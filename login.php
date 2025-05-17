@@ -12,8 +12,6 @@
 
     <h3><strong>login</strong></h3>
 
-    <!-- login-->
-
 </body>
 
 </html>

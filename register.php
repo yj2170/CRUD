@@ -11,6 +11,7 @@
     <u><a href="http://localhost/CRUD/login.php">login</a></u></h5>
 
     <h3><strong>register</strong></h3>
+    
 </body>
 
 </html>
