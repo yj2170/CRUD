@@ -1,18 +1,9 @@
 <?php
 session_start();
-$host = getenv('DB_HOST') ?: 'db';
-$db = getenv('DB_NAME') ?: 'crud';
-$user = getenv('DB_USER') ?: 'root';
-$pass = getenv('DB_PASS') ?: 'yourpassword';
-
-$pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+require_once 'db.php';
 
 $id = $_GET['id'] ?? null;
-if (!$id) {
-    die("Invalid post ID");
-}
+if (!$id) die("Invalid post ID");
 
 $stmt = $pdo->prepare("SELECT * FROM posts WHERE id = ?");
 $stmt->execute([$id]);

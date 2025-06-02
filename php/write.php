@@ -5,14 +5,7 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-$host = getenv('DB_HOST') ?: 'db';
-$db = getenv('DB_NAME') ?: 'crud';
-$user = getenv('DB_USER') ?: 'root';
-$pass = getenv('DB_PASS') ?: 'yourpassword';
-
-$pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'] ?? '';
@@ -35,10 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <h5><u><a href="index.php">home</a></u>
-    <u><a href="write.php">write</a></u>
-    <u><a href="list.php">list</a></u>
-    <u><a href="logout.php">logout</a></u></h5>
+    <?php require_once 'nav.php'; ?>
 
     <h3><strong>write</strong></h3>
     <form method="POST">
@@ -46,8 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     Content <br>
     <textarea name="content" rows="10" cols="50" required></textarea><br><br>
     <button type="submit">submit</button>
-</form>
-
+    </form>
 </body>
 
 </html>

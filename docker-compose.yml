@@ -10,17 +10,17 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: db
-      DB_NAME: crud
-      DB_USER: root
-      DB_PASS: yourpassword
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
 
   db:
     image: mysql:8.0
     container_name: db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: yourpassword
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: crud
     volumes:
       - mysql_data:/var/lib/mysql
@@ -36,7 +36,7 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: yourpassword
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
 volumes:
   mysql_data:
