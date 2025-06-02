@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <u><a href="list.php">list</a></u>
     <u><a href="logout.php">logout</a></u></h5>
 
-    <h3><strong>Write</strong></h3>
+    <h3><strong>write</strong></h3>
     <form method="POST">
     Title <input type="text" name="title" required><br><br>
     Content <br>

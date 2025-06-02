@@ -7,8 +7,6 @@ $db = getenv('DB_NAME') ?: 'crud';
 $user = getenv('DB_USER') ?: 'root';
 $pass = getenv('DB_PASS') ?: 'yourpassword';
 
-$conn = new mysqli($host, $user, $pass, $db);
-
 $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
 
 try {
@@ -19,7 +17,6 @@ try {
     die("DB connect failed: " . $e->getMessage());
 }
 
-// 로그인 폼이 제출되었을 때만 처리
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
@@ -30,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password_hash'])) {
-        $_SESSION['username'] = $username;  // 세션에 로그인 정보 저장
+        $_SESSION['username'] = $username;
         header("Location: index.php");
         exit;
     } else {

@@ -22,7 +22,7 @@ if (!isset($_SESSION['username'])) {
 
     <h3><strong>home</strong></h3>
 
-    <h4>You are logged in as user.</h4>
+    <h4>You are logged in as a user.</h4>
 
 </body>
 

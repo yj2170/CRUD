@@ -25,8 +25,8 @@ $posts = $stmt->fetchAll();
     <u><a href="list.php">list</a></u>
     <u><a href="logout.php">logout</a></u></h5>
 
-    <h3><strong>List</strong></h3>
-    <a href="write.php">[Write]</a><br><br>
+    <h3><strong>list</strong></h3>
+    <a href="write.php">[write]</a><br><br>
 </form>
 
 </body>
@@ -35,8 +35,9 @@ $posts = $stmt->fetchAll();
 
 <?php foreach ($posts as $post): ?>
     <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-        <strong><?= htmlspecialchars($post['title']) ?></strong><br>
-        <?= nl2br(htmlspecialchars($post['content'])) ?><br>
-        <small>Writer : <?= htmlspecialchars($post['username']) ?> | <?= $post['created_at'] ?></small>
+        <a href="view.php?id=<?= $post['id'] ?>">
+            <strong><?= htmlspecialchars($post['title']) ?></strong>
+        </a><br>
+        <small>writer : <?= htmlspecialchars($post['username']) ?> | <?= $post['created_at'] ?></small>
     </div>
 <?php endforeach; ?>

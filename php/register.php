@@ -1,13 +1,19 @@
 <?php
-session_start();
 $host = getenv('DB_HOST') ?: 'db';
 $db   = getenv('DB_NAME') ?: 'crud';
 $user = getenv('DB_USER') ?: 'root';
 $pass = getenv('DB_PASS') ?: 'yourpassword';
 
-$pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+$dsn = "mysql:host=$host;dbname=$db;charset=utf8";
 
-// 폼이 제출되었을 때만 처리
+try {
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+} catch (PDOException $e) {
+    die("DB connect failed: " . $e->getMessage());
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
