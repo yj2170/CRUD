@@ -1,12 +1,5 @@
 <?php
-$host = getenv('DB_HOST') ?: 'db';
-$db = getenv('DB_NAME') ?: 'crud';
-$user = getenv('DB_USER') ?: 'root';
-$pass = getenv('DB_PASS') ?: 'yourpassword';
-
-$pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+require_once 'db.php';
 
 $stmt = $pdo->query("SELECT * FROM posts ORDER BY created_at DESC");
 $posts = $stmt->fetchAll();
@@ -20,10 +13,7 @@ $posts = $stmt->fetchAll();
 </head>
 
 <body>
-    <h5><u><a href="index.php">home</a></u>
-    <u><a href="write.php">write</a></u>
-    <u><a href="list.php">list</a></u>
-    <u><a href="logout.php">logout</a></u></h5>
+    <?php require_once 'nav.php'; ?>
 
     <h3><strong>list</strong></h3>
     <a href="write.php">[write]</a><br><br>
